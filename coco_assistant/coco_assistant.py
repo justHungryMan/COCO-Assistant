@@ -191,7 +191,7 @@ class COCO_Assistant():
         if jc is None or rcats is None:
             ###########################################################
             print(self.jsonfiles)
-            print("Who needs a cat removal?")
+            print("Select categories to use")
             self.jc = input()
             assert self.jc.lower() in [item.lower() for item in self.jsonfiles], "Choice not in json file list"
             ind = self.jsonfiles.index(self.jc.lower())
@@ -202,7 +202,7 @@ class COCO_Assistant():
             print(cats)
 
             self.rcats = []
-            print("\nEnter categories you wish to remove:")
+            print("\nSelect categories to use:")
             while True:
                 x = input()
                 if x.lower() in [cat.lower() for cat in cats]:
@@ -222,7 +222,7 @@ class COCO_Assistant():
             ann = self.annfiles[ind]
             self.rcats = rcats
 
-        print("Removing specified categories...")
+        print("Using specified categories...")
 
         # Gives you a list of category ids of the categories to be removed
         catids_remove = ann.getCatIds(catNms=self.rcats)
@@ -236,10 +236,13 @@ class COCO_Assistant():
 
         with open(os.path.join(self.ann_dir, self.jc)) as it:
             x = json.load(it)
+        x['categories'] = cats
+        x['annotations'] = anns
 
+        """
         x['categories'] = [i for i in x['categories'] if i not in cats]
         x['annotations'] = [i for i in x['annotations'] if i not in anns]
-
+        """
         with open(os.path.join(self.resrm_dir, self.jc), 'w') as oa:
             json.dump(x, oa)
 

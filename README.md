@@ -98,18 +98,18 @@ index created!
 
 cas.remove_cat()
 ['tiny.json', 'tiny2.json']
-Who needs a cat removal?
+Select categories to use
 tiny.json
 
 Categories present:
 ['building', 'vehicles]
 
-Enter categories you wish to remove:
+Select categories to use:
 building
 ['building']
 Press n if you're done entering categories, else continue
 n
-Removing specified categories...
+Using specified categories...
 ```
 The modified annotation can be found in `./results/removal`
 
